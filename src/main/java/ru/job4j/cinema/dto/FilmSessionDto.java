@@ -2,21 +2,51 @@ package ru.job4j.cinema.dto;
 
 import java.time.LocalDateTime;
 
-public class ScheduleDto {
+public class FilmSessionDto {
     private int id;
     private String filmName;
+    private String description;
     private String hallName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int price;
+    private int fileId;
+    private int hallId;
 
-    public ScheduleDto(int id, String filmName, String hallName, LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public FilmSessionDto(int id, String filmName, String description, String hallName, LocalDateTime startTime, LocalDateTime endTime, int price, int fileId, int hallId) {
         this.id = id;
         this.filmName = filmName;
+        this.description = description;
         this.hallName = hallName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.price = price;
+        this.fileId = fileId;
+        this.hallId = hallId;
+    }
+
+    public int getHallId() {
+        return hallId;
+    }
+
+    public void setHallId(int hallId) {
+        this.hallId = hallId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     public int getId() {

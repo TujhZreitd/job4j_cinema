@@ -27,8 +27,18 @@ public class Sql2oFilmRepository implements FilmRepository {
     @Override
     public Optional<Film> findById(int id) {
         try (Connection connection = sql2o.open()) {
-            Query query = connection.createQuery("SELECT * FROM films WHERE name = :id")
+            Query query = connection.createQuery("SELECT * FROM films WHERE id = :id")
                     .addParameter("id", id);
+            Film film = query.setColumnMappings(Film.COLUMN_MAPPING).executeAndFetchFirst(Film.class);
+            return Optional.ofNullable(film);
+        }
+    }
+
+    @Override
+    public Optional<Film> findByName(String name) {
+        try (Connection connection = sql2o.open()) {
+            Query query = connection.createQuery("SELECT * FROM films WHERE name = :name")
+                    .addParameter("name");
             Film film = query.setColumnMappings(Film.COLUMN_MAPPING).executeAndFetchFirst(Film.class);
             return Optional.ofNullable(film);
         }

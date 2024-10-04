@@ -40,10 +40,11 @@ public class Sql2oUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public Optional<User> findByEmailAndPassword(String email, String password) {
         try (Connection connection = sql2o.open()) {
-            Query query = connection.createQuery("SELECT * FROM users WHERE email = :email")
-                    .addParameter("email", email);
+            Query query = connection.createQuery("SELECT * FROM users WHERE email = :email AND password = :password")
+                    .addParameter("email", email)
+                    .addParameter("password", password);
             User user = query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetchFirst(User.class);
             return Optional.ofNullable(user);
         }

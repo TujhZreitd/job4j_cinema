@@ -9,4 +9,5 @@ public interface FilmRepository {
     Collection<Film> findAll();
 
     Optional<Film> findById(int id);
+    Optional<Film> findByName(String name);
 }

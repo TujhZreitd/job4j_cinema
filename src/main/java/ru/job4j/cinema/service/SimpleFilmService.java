@@ -1,7 +1,6 @@
 package ru.job4j.cinema.service;
 
 import org.springframework.stereotype.Service;
-import org.sql2o.Connection;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.Genre;
@@ -48,6 +47,24 @@ public class SimpleFilmService implements FilmService {
     @Override
     public Optional<FilmDto> findById(int id) {
         var optionalFilm = filmRepository.findById(id);
+        if (optionalFilm.isEmpty()) {
+            return Optional.empty();
+        }
+        Film film = optionalFilm.get();
+        return Optional.of(
+                new FilmDto(
+                        film.getId(),
+                        film.getName(),
+                        film.getDescription(),
+                        film.getYear(),
+                        film.getMinimalAge(),
+                        film.getDurationInMinutes(),
+                        getGenreFilm(film.getGenreId())));
+    }
+
+    @Override
+    public Optional<FilmDto> findByName(String name) {
+        var optionalFilm = filmRepository.findByName(name);
         if (optionalFilm.isEmpty()) {
             return Optional.empty();
         }

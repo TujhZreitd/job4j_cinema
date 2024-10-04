@@ -7,6 +7,7 @@ import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.Hall;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Repository
 public class Sql2oHallRepository implements HallRepository {
@@ -20,6 +21,15 @@ public class Sql2oHallRepository implements HallRepository {
         try (Connection connection = sql2o.open()) {
             Query query = connection.createQuery("SELECT * FROM halls");
             return query.setColumnMappings(Hall.COLUMN_MAPPING).executeAndFetch(Hall.class);
+        }
+    }
+
+    @Override
+    public Optional<Hall> findById(int id) {
+        try (Connection connection = sql2o.open()) {
+            Query query = connection.createQuery("SELECT * FROM halls WHERE id = :id")
+                    .addParameter("id", id);
+            return Optional.ofNullable(query.setColumnMappings(Hall.COLUMN_MAPPING).executeAndFetchFirst(Hall.class));
         }
     }
 }
