@@ -12,6 +12,11 @@ public class FilmSessionDto {
     private int price;
     private int fileId;
     private int hallId;
+    private int row;
+    private int place;
+    public FilmSessionDto() {
+
+    }
 
     public FilmSessionDto(int id, String filmName, String description, String hallName, LocalDateTime startTime, LocalDateTime endTime, int price, int fileId, int hallId) {
         this.id = id;
@@ -23,6 +28,37 @@ public class FilmSessionDto {
         this.price = price;
         this.fileId = fileId;
         this.hallId = hallId;
+    }
+
+    public FilmSessionDto(int id, String filmName, String description, String hallName, LocalDateTime startTime,
+                          LocalDateTime endTime, int price, int fileId, int hallId, int row, int place) {
+        this.id = id;
+        this.filmName = filmName;
+        this.description = description;
+        this.hallName = hallName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.price = price;
+        this.fileId = fileId;
+        this.hallId = hallId;
+        this.row = row;
+        this.place = place;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getPlace() {
+        return place;
+    }
+
+    public void setPlace(int place) {
+        this.place = place;
     }
 
     public int getHallId() {

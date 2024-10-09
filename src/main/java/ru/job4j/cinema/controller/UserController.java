@@ -46,7 +46,7 @@ public class UserController {
     public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
-            model.addAttribute("error", "Почта или паполь введены неверно");
+            model.addAttribute("error", "Почта или пароль введены неверно");
             return "users/login";
         }
         var session = request.getSession();
@@ -54,7 +54,7 @@ public class UserController {
         return "redirect:/schedule";
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/users/login";

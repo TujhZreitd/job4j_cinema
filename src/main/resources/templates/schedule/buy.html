@@ -31,26 +31,33 @@
                     </div>
                     <div class="mb-3">
                         <label for="row"><b>Ряд</b></label>
-                        <select class="form-control" id="row" name="filmSession">
+                        <select class="form-control" id="row" name="row">
                         <span th:if="${filmSession.hallId == 1}">
-                            <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}"></option>
+                            <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}" th:field="*{row}" th:selected="${i == row}"></option>
                         </span>
                             <span th:if="${filmSession.hallId == 2}">
-                            <option th:each="i : ${#numbers.sequence(1,10)}" th:value="${i}" th:text="${i}"></option>
+                            <option th:each="i : ${#numbers.sequence(1,10)}" th:value="${i}" th:text="${i}" th:field="*{row}" th:selected="${i == row}"></option>
                         </span>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="place"><b>Место</b></label>
-                        <select class="form-control" id="place" name="filmSession">
+                        <select class="form-control" id="place" name="place">
                         <span th:if="${filmSession.hallId == 1}">
-                            <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}"></option>
+                            <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}" th:field="*{place}" th:selected="${i == place}"></option>
                         </span>
                             <span th:if="${filmSession.hallId == 2}">
-                            <option th:each="i : ${#numbers.sequence(1,10)}" th:value="${i}" th:text="${i}"></option>
+                            <option th:each="i : ${#numbers.sequence(1,10)}" th:value="${i}" th:text="${i}" th:field="*{place}" th:selected="${i == place}"></option>
                         </span>
                         </select>
                     </div>
+                    <div class="mb-3 row">
+                        <div class="col-6">
+                            <div class="col-12"><button class="btn btn-primary w-100" type="submit">Купить</button></div>
+                            <div class="col-12"><a class="btn btn-danger w-100" th:href="@{/schedule}">Отмена</a></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </form>

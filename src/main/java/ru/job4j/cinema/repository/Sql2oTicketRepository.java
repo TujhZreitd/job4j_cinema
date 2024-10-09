@@ -44,9 +44,10 @@ public class Sql2oTicketRepository implements TicketRepository {
             ticket.setId(generatedId);
             return Optional.of(ticket);
         } catch (Sql2oException e) {
-            LOGGER.info("Вернись сюда, может тут проблем с покупкой билетов", e);
+            LOGGER.info("Вернись сюда, может тут проблема с покупкой билетов", e);
+            throw e;
         }
-        return Optional.empty();
+        /*return Optional.empty();*/
     }
 
     @Override
